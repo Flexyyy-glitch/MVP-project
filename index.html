@@ -52,24 +52,434 @@
     </header>
 
     <!-- 2. ОСНОВНИЙ ВМІСТ (МІСЦЕ ДЛЯ СЕКЦІЙ HERO, FEATURES, ETC.) -->
-    <main>
-        <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8 text-center">
-            <!-- Змінено колір заголовка на білий/світлий для контрасту -->
-            <h1 class="text-4xl font-extrabold text-white sm:text-5xl md:text-6xl">
-                Ваш MVP Готовий у Темному Режимі
-            </h1>
-            <!-- Змінено колір тексту на світло-сірий -->
-            <p class="mt-4 text-xl text-gray-400 max-w-3xl mx-auto">
-                Це основний вміст сторінки "Головна" у стильному чорно-фіолетовому оформленні.
+    <main class="flex flex-col lg:flex-row max-w-screen-xl mx-auto p-4 gap-6 w-full h-[calc(100vh-2rem)]">
+        
+        <!-- ЛІВА ЧАСТИНА: Інструкції, Код та Управління -->
+        <div class="lg:w-1/2 flex flex-col space-y-4 h-full">
+            
+            <h1 class="text-3xl font-extrabold text-violet-400 mb-2">Blocks</h1>
+            <p class="text-gray-400">
+                Рівень <span id="current-level" class="font-bold text-violet-300">1</span> з 25.
             </p>
-            <div class="mt-10 flex justify-center">
-                <!-- CTA Кнопка у фіолетовому кольорі -->
-                <a href="#" class="inline-flex items-center justify-center px-10 py-3 border border-transparent text-base font-medium rounded-full shadow-lg text-white bg-violet-600 hover:bg-violet-700 transition duration-150 ease-in-out transform hover:scale-105">
-                    Заклик до Дії (CTA)
-                </a>
+
+            <!-- Поле інструкцій -->
+            <div id="instructions" class="bg-gray-800 p-4 rounded-lg shadow-inner border border-violet-800">
+                <h2 class="text-xl font-semibold mb-2 text-white">Завдання</h2>
+                <p id="goal-text" class="text-gray-300 mb-4"></p>
+                <h3 class="text-md font-medium text-violet-400 mb-2">Стартовий CSS:</h3>
+                <pre id="starter-css-container" class="text-violet-300"></pre>
+            </div>
+
+            <!-- Редактор коду -->
+            <div class="flex-grow flex flex-col">
+                <label for="css-input" class="text-md font-medium mb-2 text-violet-300">Ваш CSS для #game-container:</label>
+                <textarea id="css-input" placeholder="Введіть властивість та значення, наприклад: justify-content: flex-end;"></textarea>
+            </div>
+            
+            <!-- Кнопки керування -->
+            <div class="flex space-x-4 pt-4">
+                <button id="check-btn" onclick="checkAnswer()" class="flex-1 px-6 py-3 bg-violet-600 text-white font-bold rounded-lg shadow-lg hover:bg-violet-700 transition duration-150 transform hover:scale-[1.01]">
+                    Перевірити!
+                </button>
+                <button id="next-btn" onclick="nextLevel()" class="px-6 py-3 bg-green-600 text-white font-bold rounded-lg shadow-lg hover:bg-green-700 transition duration-150 transform hover:scale-[1.01] hidden">
+                    Наступний Рівень &rarr;
+                </button>
             </div>
         </div>
+
+        <!-- ПРАВА ЧАСТИНА: Ігрове поле -->
+        <div class="lg:w-1/2 h-full flex flex-col">
+            <h2 class="text-xl font-semibold text-white mb-2">Результат</h2>
+            <!-- Ігрове поле -->
+            <div id="game-board-container" class="flex-grow min-h-[300px] lg:min-h-full">
+                <!-- Вміст додається JavaScript -->
+            </div>
+            
+            <!-- Повідомлення про успіх/помилку -->
+            <div id="message-box" class="mt-4 p-3 rounded-lg text-center font-medium hidden" role="alert"></div>
+
+        </div>
+
     </main>
+
+    <script>
+        const gameContainer = document.getElementById('game-board-container');
+        const cssInput = document.getElementById('css-input');
+        const goalText = document.getElementById('goal-text');
+        const currentLevelSpan = document.getElementById('current-level');
+        const checkBtn = document.getElementById('check-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const messageBox = document.getElementById('message-box');
+        const starterCssContainer = document.getElementById('starter-css-container');
+
+        let currentLevel = 1;
+
+        // Визначення унікальних іконок/емодзі для блоків (заміна "картинок")
+        const ITEM_ICONS = {
+            1: '🐸', // Жаба
+            2: '⭐', // Зірка
+            3: '🍎', // Яблуко
+            4: '💎', // Діамант
+            5: '🍄'  // Гриб
+        };
+
+        // Функція для створення HTML блоку з іконкою
+        function createItemHTML(id) {
+            const icon = ITEM_ICONS[id] || '❓';
+            return `<div class="item item-${id}">${icon}</div>`;
+        }
+
+
+        // Визначення 25 рівнів гри
+        const levels = [
+            // Рівень 1: justify-content: flex-end
+            {
+                id: 1,
+                goal: "Використовуйте `justify-content` із значенням `flex-end`, щоб перемістити блоки в кінець осі контейнера (праворуч).",
+                starterCSS: "#game-container { display: flex; }",
+                solution: "justify-content: flex-end;",
+                boardHTML: createItemHTML(1) + createItemHTML(2) + createItemHTML(3)
+            },
+            // Рівень 2: justify-content: center
+            {
+                id: 2,
+                goal: "Перемістіть блоки в центр контейнера по горизонталі за допомогою `justify-content`.",
+                starterCSS: "#game-container { display: flex; }",
+                solution: "justify-content: center;",
+                boardHTML: createItemHTML(1) + createItemHTML(2)
+            },
+            // Рівень 3: justify-content: space-around
+            {
+                id: 3,
+                goal: "Вирівняйте блоки так, щоб простір розподілявся рівномірно довкола кожного елемента, використовуючи `justify-content`.",
+                starterCSS: "#game-container { display: flex; }",
+                solution: "justify-content: space-around;",
+                boardHTML: createItemHTML(1) + createItemHTML(2) + createItemHTML(3) + createItemHTML(4)
+            },
+            // Рівень 4: align-items: flex-end
+            {
+                id: 4,
+                goal: "Використовуйте `align-items` із значенням `flex-end`, щоб перемістити блоки в нижню частину контейнера.",
+                starterCSS: "#game-container { display: flex; height: 100%; }",
+                solution: "align-items: flex-end;",
+                boardHTML: createItemHTML(1) + createItemHTML(2) + createItemHTML(3)
+            },
+            // Рівень 5: align-items: center
+            {
+                id: 5,
+                goal: "Відцентруйте блоки по вертикалі (поперечна вісь) за допомогою `align-items`.",
+                starterCSS: "#game-container { display: flex; height: 100%; }",
+                solution: "align-items: center;",
+                boardHTML: createItemHTML(1) + createItemHTML(2)
+            },
+            // Рівень 6: flex-direction: column
+            {
+                id: 6,
+                goal: "Змініть напрямок головної осі на вертикальний за допомогою `flex-direction` із значенням `column-reverse`. Блоки 🐸 та ⭐ мають помінятися місцями.",
+                starterCSS: "#game-container { display: flex; height: 100%; }",
+                solution: "flex-direction: column-reverse;",
+                boardHTML: createItemHTML(1) + createItemHTML(2)
+            },
+            // Рівень 7: flex-direction: row-reverse + justify-content
+            {
+                id: 7,
+                goal: "Розверніть порядок блоків, використовуючи `flex-direction: row-reverse;`, і вирівняйте їх по центру за допомогою `justify-content`.",
+                starterCSS: "#game-container { display: flex; }",
+                solution: "flex-direction: row-reverse; justify-content: center;",
+                boardHTML: createItemHTML(1) + createItemHTML(2)
+            },
+            // Рівень 8: justify-content + align-items (повне центрування)
+            {
+                id: 8,
+                goal: "Використовуйте `justify-content` та `align-items` для **повного центрування** блоку 🍄 у контейнері.",
+                starterCSS: "#game-container { display: flex; height: 100%; }",
+                solution: "justify-content: center; align-items: center;",
+                boardHTML: createItemHTML(5)
+            },
+            // Рівень 9: align-self
+            {
+                id: 9,
+                goal: "Використовуйте `align-self: flex-end;` на блоці 🐸 (`.item-1`) та `align-self: flex-start;` на блоці ⭐ (`.item-2`)",
+                starterCSS: `#game-container { display: flex; height: 100%; align-items: center; }`,
+                solution: ".item-1 { align-self: flex-end; } .item-2 { align-self: flex-start; }",
+                boardHTML: createItemHTML(1) + createItemHTML(2) + createItemHTML(3)
+            },
+            // Рівень 10: flex-wrap
+            {
+                id: 10,
+                goal: "Використовуйте `flex-wrap: wrap;`, щоб блоки переносилися на новий рядок (контейнер має обмежену ширину).",
+                starterCSS: "#game-container { display: flex; width: 300px; }",
+                solution: "flex-wrap: wrap;",
+                boardHTML: createItemHTML(1) + createItemHTML(2) + createItemHTML(3) + createItemHTML(4) + createItemHTML(5)
+            },
+            // Рівень 11: Комбінуйте: row-reverse + space-between.
+            { 
+                id: 11, 
+                goal: "Комбінуйте: `row-reverse` + `space-between`.", 
+                starterCSS: "#game-container { display: flex; }", 
+                solution: "flex-direction: row-reverse; justify-content: space-between;", 
+                boardHTML: createItemHTML(1) + createItemHTML(2) + createItemHTML(3)
+            },
+            // Рівень 12: flex-flow
+            { 
+                id: 12, 
+                goal: "Використовуйте скорочену властивість `flex-flow` для встановлення напрямку `column` та вирівнювання `center` (по головній осі).", 
+                starterCSS: "#game-container { display: flex; height: 100%; }", 
+                solution: "flex-flow: column center;", 
+                boardHTML: createItemHTML(1) + createItemHTML(2)
+            },
+            // Рівень 13: order
+            { 
+                id: 13, 
+                goal: "Перемістіть блок 🍎 (`.item-3`) на перше місце за допомогою `order`.", 
+                starterCSS: "#game-container { display: flex; }", 
+                solution: ".item-3 { order: -1; }", 
+                boardHTML: createItemHTML(1) + createItemHTML(2) + createItemHTML(3)
+            },
+            // Рівень 14: align-content
+            { 
+                id: 14, 
+                goal: "Вирівняйте лінії за допомогою `align-content: space-around;` (контейнер загорнутий).", 
+                starterCSS: "#game-container { display: flex; flex-wrap: wrap; height: 100%; width: 200px; }", 
+                solution: "align-content: space-around;", 
+                boardHTML: createItemHTML(1) + createItemHTML(2) + createItemHTML(3) + createItemHTML(4) + createItemHTML(5)
+            },
+            // Рівень 15: flex-grow
+            { 
+                id: 15, 
+                goal: "Використовуйте `flex-grow: 1` на блоці 🐸 (`.item-1`), щоб він зайняв весь доступний простір.", 
+                starterCSS: "#game-container { display: flex; }", 
+                solution: ".item-1 { flex-grow: 1; }", 
+                boardHTML: createItemHTML(1) + createItemHTML(2)
+            },
+            // Рівень 16: flex-grow + flex-shrink
+            { 
+                id: 16, 
+                goal: "Забезпечте, щоб блок 🐸 (`.item-1`) займав вдвічі більше місця, ніж блок ⭐ (`.item-2`), використовуючи `flex-grow` (2 та 1).", 
+                starterCSS: "#game-container { display: flex; }", 
+                solution: ".item-1 { flex-grow: 2; } .item-2 { flex-grow: 1; }", 
+                boardHTML: createItemHTML(1) + createItemHTML(2)
+            },
+            // Рівень 17: justify-content + align-content (повне центрування з wrap)
+            { 
+                id: 17, 
+                goal: "Використовуйте `justify-content` та `align-content` для центрування блоків по обох осях (потрібен `flex-wrap: wrap`).", 
+                starterCSS: "#game-container { display: flex; flex-wrap: wrap; height: 100%; }", 
+                solution: "justify-content: center; align-content: center;", 
+                boardHTML: createItemHTML(1) + createItemHTML(2) + createItemHTML(3)
+            },
+            // Рівень 18: order (складний)
+            { 
+                id: 18, 
+                goal: "Використовуйте `order` для зміни позицій 🐸, ⭐, 🍎 на 🍎, 🐸, ⭐.", 
+                starterCSS: "#game-container { display: flex; }", 
+                solution: ".item-1 { order: 2; } .item-2 { order: 3; } .item-3 { order: 1; }", 
+                boardHTML: createItemHTML(1) + createItemHTML(2) + createItemHTML(3)
+            },
+            // Рівень 19: align-content (flex-end)
+            { 
+                id: 19, 
+                goal: "Перенесіть блоки та вирівняйте їх у кінці (внизу) за допомогою `align-content: flex-end;`.", 
+                starterCSS: "#game-container { display: flex; flex-wrap: wrap; height: 100%; width: 250px; }", 
+                solution: "align-content: flex-end;", 
+                boardHTML: createItemHTML(1) + createItemHTML(2) + createItemHTML(3) + createItemHTML(4)
+            },
+            // Рівень 20: align-items: baseline
+            { 
+                id: 20, 
+                goal: "Вирівняйте блоки по осі baseline (`align-items: baseline;`).", 
+                starterCSS: "#game-container { display: flex; height: 100%; }", 
+                solution: "align-items: baseline;", 
+                boardHTML: `<div class="item item-1" style="font-size: 2rem;">${ITEM_ICONS[1]}</div>` + createItemHTML(2) 
+            },
+            // Рівень 21: flex-basis
+            { 
+                id: 21, 
+                goal: "Використовуйте `flex-basis: 150px;` на блоці 🐸 (`.item-1`) для встановлення його початкового розміру.", 
+                starterCSS: "#game-container { display: flex; }", 
+                solution: ".item-1 { flex-basis: 150px; }", 
+                boardHTML: createItemHTML(1) + createItemHTML(2)
+            },
+            // Рівень 22: stretch
+            { 
+                id: 22, 
+                goal: "Зробіть блоки максимально широкими та високими за допомогою `flex-grow` та `align-items: stretch` (введіть обидві властивості).", 
+                starterCSS: "#game-container { display: flex; height: 100%; align-items: stretch; }", 
+                solution: ".item { flex-grow: 1; }", 
+                boardHTML: createItemHTML(1) + createItemHTML(2)
+            },
+            // Рівень 23: column + space-between
+            { 
+                id: 23, 
+                goal: "Комбінуйте `flex-direction: column` та `justify-content: space-between`.", 
+                starterCSS: "#game-container { display: flex; height: 100%; }", 
+                solution: "flex-direction: column; justify-content: space-between;", 
+                boardHTML: createItemHTML(1) + createItemHTML(2) + createItemHTML(3)
+            },
+            // Рівень 24: row-reverse + align-items: center
+            { 
+                id: 24, 
+                goal: "Поєднайте `row-reverse` та `align-items: center`.", 
+                starterCSS: "#game-container { display: flex; height: 100%; }", 
+                solution: "flex-direction: row-reverse; align-items: center;", 
+                boardHTML: createItemHTML(1) + createItemHTML(2)
+            },
+            // Рівень 25: Фінальне завдання
+            { 
+                id: 25, 
+                goal: "Фінальне завдання! Повністю відцентруйте блоки (justify-content, align-items) та розверніть їхній порядок (row-reverse).", 
+                starterCSS: "#game-container { display: flex; height: 100%; }", 
+                solution: "justify-content: center; align-items: center; flex-direction: row-reverse;", 
+                boardHTML: createItemHTML(1) + createItemHTML(2)
+            }
+        ];
+
+        /**
+         * Утиліта для застосування властивостей CSS до елемента.
+         * @param {HTMLElement} element - елемент, до якого застосовуються стилі.
+         * @param {string} propertiesString - рядок CSS-властивостей (наприклад, "color: red; font-size: 16px;").
+         */
+        function applyStyles(element, propertiesString) {
+            propertiesString.split(';').forEach(prop => {
+                const [key, value] = prop.split(':');
+                if (key && value) {
+                    // Перетворюємо kebab-case на camelCase для властивостей JavaScript style
+                    const camelCaseKey = key.trim().replace(/-([a-z])/g, (g) => g[1].toUpperCase());
+                    element.style[camelCaseKey] = value.trim();
+                }
+            });
+        }
+        
+        // Функція для очищення та застосування CSS
+        function applyUserCSS(cssCode) {
+            // 1. Очищення ВСІХ попередніх інлайн-стилів для контейнера та елементів
+            gameContainer.removeAttribute('style');
+            const items = gameContainer.querySelectorAll('.item');
+            items.forEach(item => item.removeAttribute('style'));
+
+            const levelData = levels[currentLevel - 1];
+            
+            // 2. Застосування СТАРТОВОГО CSS (це наша база)
+            const starterRules = levelData.starterCSS.match(/(\.item-\d|\#game-container|\s*)\s*\{([^}]+)\}/g) || [];
+            
+            starterRules.forEach(rule => {
+                const [selector, properties] = rule.split(/\{|\}/).filter(s => s.trim().length > 0);
+                if (!selector || selector.includes('game-container')) {
+                    applyStyles(gameContainer, properties);
+                } else if (selector.startsWith(".item")) {
+                    document.querySelectorAll(selector).forEach(item => applyStyles(item, properties));
+                }
+            });
+            // Обробка чистого CSS для контейнера, якщо немає селекторів
+            if (starterRules.length === 0 && levelData.starterCSS.trim()) {
+                applyStyles(gameContainer, levelData.starterCSS.replace(/[\#\{\}]/g, '').trim());
+            }
+
+            // 3. Застосування КОДУ КОРИСТУВАЧА (для живого оновлення)
+            const userRules = cssCode.match(/(\.item-\d|\s*)\s*\{([^}]+)\}/g) || [];
+            let containerCode = cssCode;
+
+            userRules.forEach(rule => {
+                const [selector, properties] = rule.split(/\{|\}/).filter(s => s.trim().length > 0);
+                
+                if (selector.startsWith(".item")) {
+                    document.querySelectorAll(selector).forEach(item => applyStyles(item, properties));
+                }
+                containerCode = containerCode.replace(rule, '');
+            });
+
+            containerCode = containerCode.replace(/[\#\{\}]/g, '').trim();
+            if (containerCode) {
+                applyStyles(gameContainer, containerCode);
+            }
+        }
+
+        // Функція для завантаження рівня
+        function loadLevel() {
+            const levelData = levels[currentLevel - 1];
+
+            // Оновлення інтерфейсу
+            currentLevelSpan.textContent = currentLevel;
+            goalText.textContent = levelData.goal;
+            
+            // Форматування для відображення стартового CSS
+            let starterDisplay = levelData.starterCSS.trim();
+            if (starterDisplay.startsWith('#game-container {') && starterDisplay.endsWith('}')) {
+                starterDisplay = starterDisplay.replace('#game-container {', '/* Для #game-board-container */\n')
+                                                .replace('}', '');
+            }
+            starterCssContainer.textContent = starterDisplay;
+
+            // Встановлення вмісту ігрового поля
+            gameContainer.innerHTML = levelData.boardHTML;
+
+            // Очищення поля вводу та повідомлення
+            cssInput.value = '';
+            messageBox.textContent = '';
+            messageBox.classList.add('hidden');
+            nextBtn.classList.add('hidden');
+            checkBtn.classList.remove('hidden');
+
+            // Застосування початкового CSS рівня
+            applyUserCSS(""); 
+        }
+
+        // Функція перевірки відповіді
+        function checkAnswer() {
+            const levelData = levels[currentLevel - 1];
+            const userAnswer = cssInput.value.trim().toLowerCase().replace(/\s+/g, ' ');
+            const normalizedSolution = levelData.solution.toLowerCase().replace(/\s+/g, ' ');
+
+            // Перевірка: чи містить відповідь правильні властивості
+            const isCorrect = normalizedSolution.split(';').every(solPart => {
+                solPart = solPart.trim();
+                if (!solPart) return true; 
+
+                // Використовуємо регулярний вираз для перевірки наявності властивості
+                const regex = new RegExp(solPart.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i');
+                return regex.test(userAnswer);
+            });
+            
+            applyUserCSS(cssInput.value);
+
+            if (isCorrect) {
+                messageBox.textContent = "Вітаємо! Блоки переміщено правильно.";
+                messageBox.className = 'mt-4 p-3 rounded-lg text-center font-medium bg-green-900 text-green-300';
+                checkBtn.classList.add('hidden');
+                
+                if (currentLevel < levels.length) {
+                    nextBtn.classList.remove('hidden');
+                } else {
+                    messageBox.textContent = "Вітаємо! Ви успішно пройшли всі 25 рівнів Flexbox!";
+                }
+
+            } else {
+                messageBox.textContent = "Спробуйте ще раз. Переконайтеся, що ви використали правильну властивість та значення.";
+                messageBox.className = 'mt-4 p-3 rounded-lg text-center font-medium bg-red-900 text-red-300';
+            }
+        }
+
+        // Функція переходу на наступний рівень
+        function nextLevel() {
+            if (currentLevel < levels.length) {
+                currentLevel++;
+                loadLevel();
+            }
+        }
+
+        // Ініціалізація гри
+        function initGame() {
+            loadLevel();
+
+            // Автоматичне застосування CSS під час введення
+            cssInput.addEventListener('input', () => {
+                applyUserCSS(cssInput.value);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', initGame);
+
+    </script>
 
     <!-- 3. FOOTER (НИЖНІЙ КОЛОНТИТУЛ) - Дуже глибокий ФІОЛЕТОВИЙ фон -->
     <footer class="bg-violet-950 mt-12">

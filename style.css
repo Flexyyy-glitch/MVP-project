@@ -19,3 +19,69 @@ body {
         .nav-link:hover {
             background-color: rgba(255, 255, 255, 0.15);
         }
+
+        /* Стилі для основного ігрового контейнера (Flex-Blocks) */
+        #game-board-container {
+            /* Базові властивості, які часто є у стартовому CSS */
+            width: 100%;
+            height: 100%;
+            border: 4px solid #4c1d95; /* Фіолетова рамка */
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: #1a1a1a; /* Дуже темний фон дошки */
+            min-height: 300px; 
+        }
+
+        /* Стилі для елементів (тепер з іконками/емодзі замість чисел) */
+        .item {
+            width: 60px; /* Збільшено розмір для кращої видимості іконок */
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 32px; /* Розмір іконки */
+            font-weight: bold;
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+            transition: all 0.5s ease;
+            flex-shrink: 0; 
+        }
+
+        /* Стилі для фону, якщо немає картинки */
+        .item-1 { background-color: #4ade80; /* Зелений (як жаба) */ }
+        .item-2 { background-color: #fbbf24; /* Жовтий */ }
+        .item-3 { background-color: #f87171; /* Червоний */ }
+        .item-4 { background-color: #60a5fa; /* Синій */ }
+        .item-5 { background-color: #a78bfa; /* Фіолетовий */ }
+
+        /* Стилі для textarea (редактора коду) */
+        #css-input {
+            width: 100%;
+            height: 200px;
+            min-height: 100px;
+            background-color: #1f2937; /* Темно-сірий фон для коду */
+            color: #d1d5db; /* Світлий текст */
+            border: 1px solid #4b5563;
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: 'Consolas', 'Monospace', monospace;
+            font-size: 14px;
+            resize: vertical;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        #css-input:focus {
+            border-color: #8b5cf6; /* Фіолетова рамка при фокусі */
+        }
+
+        /* Стилі для інструкцій (для чистоти коду, тут вставляється стартовий CSS) */
+        #starter-css-container {
+            font-family: 'Consolas', 'Monospace', monospace;
+            font-size: 13px;
+            padding: 0.75rem;
+            border-radius: 6px;
+            background-color: #2c3440;
+            white-space: pre-wrap;
+        }
