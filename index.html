@@ -1,48 +1,48 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MVP Сторінка - Головна</title>
-    <!-- Підключення Tailwind CSS через CDN (рекомендовано для швидкого MVP) -->
+    <title>MVP Page - Home</title>
+    <!-- Connecting Tailwind CSS via CDN (recommended for fast MVP) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Встановлення шрифту Inter та плавних переходів для кращого UX */
+        /* Setting the Inter font and smooth transitions for better UX */
         
     </style>
 </head>
 <body>
 
-    <!-- 1. HEADER (НАВІГАЦІЙНА ПАНЕЛЬ) - Глибокий ФІОЛЕТОВИЙ фон -->
+    <!-- 1. HEADER (NAVIGATION BAR) - Deep VIOLET background -->
     <header class="bg-violet-900 shadow-xl">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 
-                <!-- Логотип/Назва MVP -->
+                <!-- Logo/MVP Title -->
                 <div class="flex-shrink-0">
                     <a href="index.html" class="text-2xl font-bold text-white tracking-wider">
-                        <!-- Фірмовий фіолетовий акцент -->
+                        <!-- Signature violet accent -->
                         <span class="text-violet-400">MVP</span>-App
                     </a>
                 </div>
                 
-                <!-- Навігаційні посилання (3 сторінки) -->
+                <!-- Navigation links (3 pages) -->
                 <nav class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-4">
-                        <!-- Активний пункт: темно-фіолетовий фон -->
-                        <a href="index.html" class="nav-link text-white font-medium bg-violet-700">Головна</a>
-                        <!-- Неактивні пункти: світло-фіолетовий текст -->
-                        <a href="product.html" class="nav-link text-violet-300 hover:text-white">Продукт</a>
-                        <a href="about.html" class="nav-link text-violet-300 hover:text-white">Контакти</a>
+                        <!-- Active item: dark violet background -->
+                        <a href="index.html" class="nav-link text-white font-medium bg-violet-700">Home</a>
+                        <!-- Inactive items: light violet text -->
+                        <a href="product.html" class="nav-link text-violet-300 hover:text-white">Product</a>
+                        <a href="about.html" class="nav-link text-violet-300 hover:text-white">Contacts</a>
                     </div>
                 </nav>
                 
-                <!-- Мобільне меню (Button Placeholder) -->
+                <!-- Mobile Menu (Button Placeholder) -->
                 <div class="md:hidden">
-                    <!-- Кнопка мобільного меню в фіолетовому кольорі -->
+                    <!-- Mobile menu button in violet color -->
                     <button class="bg-violet-700 text-white p-2 rounded-md hover:bg-violet-600 transition">
-                        <!-- Іконка бургер-меню -->
+                        <!-- Hamburger menu icon -->
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                     </button>
                 </div>
@@ -51,51 +51,51 @@
         </div>
     </header>
 
-    <!-- 2. ОСНОВНИЙ ВМІСТ (МІСЦЕ ДЛЯ СЕКЦІЙ HERO, FEATURES, ETC.) -->
+    <!-- 2. MAIN CONTENT (PLACE FOR HERO, FEATURES, ETC. SECTIONS) -->
     <main class="flex flex-col lg:flex-row max-w-screen-xl mx-auto p-4 gap-6 w-full h-[calc(100vh-2rem)]">
         
-        <!-- ЛІВА ЧАСТИНА: Інструкції, Код та Управління -->
+        <!-- LEFT PART: Instructions, Code and Controls -->
         <div class="lg:w-1/2 flex flex-col space-y-4 h-full">
             
-            <h1 class="text-3xl font-extrabold text-violet-400 mb-2">Blocks</h1>
+            <h1 class="text-3xl font-extrabold text-violet-400 mb-2">Flex-Blocks 🐸</h1>
             <p class="text-gray-400">
-                Рівень <span id="current-level" class="font-bold text-violet-300">1</span> з 25.
+                Level <span id="current-level" class="font-bold text-violet-300">1</span> of 25.
             </p>
 
-            <!-- Поле інструкцій -->
+            <!-- Instructions area -->
             <div id="instructions" class="bg-gray-800 p-4 rounded-lg shadow-inner border border-violet-800">
-                <h2 class="text-xl font-semibold mb-2 text-white">Завдання</h2>
+                <h2 class="text-xl font-semibold mb-2 text-white">Task</h2>
                 <p id="goal-text" class="text-gray-300 mb-4"></p>
-                <h3 class="text-md font-medium text-violet-400 mb-2">Стартовий CSS:</h3>
+                <h3 class="text-md font-medium text-violet-400 mb-2">Starting CSS:</h3>
                 <pre id="starter-css-container" class="text-violet-300"></pre>
             </div>
 
-            <!-- Редактор коду -->
+            <!-- Code Editor -->
             <div class="flex-grow flex flex-col">
-                <label for="css-input" class="text-md font-medium mb-2 text-violet-300">Ваш CSS для #game-container:</label>
-                <textarea id="css-input" placeholder="Введіть властивість та значення, наприклад: justify-content: flex-end;"></textarea>
+                <label for="css-input" class="text-md font-medium mb-2 text-violet-300">Your CSS for #game-container:</label>
+                <textarea id="css-input" placeholder="Enter property and value, for example: justify-content: flex-end;"></textarea>
             </div>
             
-            <!-- Кнопки керування -->
+            <!-- Control Buttons -->
             <div class="flex space-x-4 pt-4">
                 <button id="check-btn" onclick="checkAnswer()" class="flex-1 px-6 py-3 bg-violet-600 text-white font-bold rounded-lg shadow-lg hover:bg-violet-700 transition duration-150 transform hover:scale-[1.01]">
-                    Перевірити!
+                    Check!
                 </button>
                 <button id="next-btn" onclick="nextLevel()" class="px-6 py-3 bg-green-600 text-white font-bold rounded-lg shadow-lg hover:bg-green-700 transition duration-150 transform hover:scale-[1.01] hidden">
-                    Наступний Рівень &rarr;
+                    Next Level &rarr;
                 </button>
             </div>
         </div>
 
-        <!-- ПРАВА ЧАСТИНА: Ігрове поле -->
+        <!-- RIGHT PART: Game Board -->
         <div class="lg:w-1/2 h-full flex flex-col">
-            <h2 class="text-xl font-semibold text-white mb-2">Результат</h2>
-            <!-- Ігрове поле -->
+            <h2 class="text-xl font-semibold text-white mb-2">Result</h2>
+            <!-- Game Board -->
             <div id="game-board-container" class="flex-grow min-h-[300px] lg:min-h-full">
-                <!-- Вміст додається JavaScript -->
+                <!-- Content added by JavaScript -->
             </div>
             
-            <!-- Повідомлення про успіх/помилку -->
+            <!-- Success/Error Message -->
             <div id="message-box" class="mt-4 p-3 rounded-lg text-center font-medium hidden" role="alert"></div>
 
         </div>
@@ -114,220 +114,220 @@
 
         let currentLevel = 1;
 
-        // Визначення унікальних іконок/емодзі для блоків (заміна "картинок")
+        // Defining unique icons/emojis for blocks (replacing "images")
         const ITEM_ICONS = {
-            1: '🐸', // Жаба
-            2: '⭐', // Зірка
-            3: '🍎', // Яблуко
-            4: '💎', // Діамант
-            5: '🍄'  // Гриб
+            1: '🐸', // Frog
+            2: '⭐', // Star
+            3: '🍎', // Apple
+            4: '💎', // Diamond
+            5: '🍄'  // Mushroom
         };
 
-        // Функція для створення HTML блоку з іконкою
+        // Function to create HTML block with icon
         function createItemHTML(id) {
             const icon = ITEM_ICONS[id] || '❓';
             return `<div class="item item-${id}">${icon}</div>`;
         }
 
 
-        // Визначення 25 рівнів гри
+        // Defining 25 game levels
         const levels = [
-            // Рівень 1: justify-content: flex-end
+            // Level 1: justify-content: flex-end
             {
                 id: 1,
-                goal: "Використовуйте `justify-content` із значенням `flex-end`, щоб перемістити блоки в кінець осі контейнера (праворуч).",
+                goal: "Use `justify-content` with the value `flex-end` to move the blocks to the end of the container's axis (to the right).",
                 starterCSS: "#game-container { display: flex; }",
                 solution: "justify-content: flex-end;",
                 boardHTML: createItemHTML(1) + createItemHTML(2) + createItemHTML(3)
             },
-            // Рівень 2: justify-content: center
+            // Level 2: justify-content: center
             {
                 id: 2,
-                goal: "Перемістіть блоки в центр контейнера по горизонталі за допомогою `justify-content`.",
+                goal: "Move the blocks to the center of the container horizontally using `justify-content`.",
                 starterCSS: "#game-container { display: flex; }",
                 solution: "justify-content: center;",
                 boardHTML: createItemHTML(1) + createItemHTML(2)
             },
-            // Рівень 3: justify-content: space-around
+            // Level 3: justify-content: space-around
             {
                 id: 3,
-                goal: "Вирівняйте блоки так, щоб простір розподілявся рівномірно довкола кожного елемента, використовуючи `justify-content`.",
+                goal: "Align the blocks so that space is distributed evenly around each element using `justify-content`.",
                 starterCSS: "#game-container { display: flex; }",
                 solution: "justify-content: space-around;",
                 boardHTML: createItemHTML(1) + createItemHTML(2) + createItemHTML(3) + createItemHTML(4)
             },
-            // Рівень 4: align-items: flex-end
+            // Level 4: align-items: flex-end
             {
                 id: 4,
-                goal: "Використовуйте `align-items` із значенням `flex-end`, щоб перемістити блоки в нижню частину контейнера.",
+                goal: "Use `align-items` with the value `flex-end` to move the blocks to the bottom of the container.",
                 starterCSS: "#game-container { display: flex; height: 100%; }",
                 solution: "align-items: flex-end;",
                 boardHTML: createItemHTML(1) + createItemHTML(2) + createItemHTML(3)
             },
-            // Рівень 5: align-items: center
+            // Level 5: align-items: center
             {
                 id: 5,
-                goal: "Відцентруйте блоки по вертикалі (поперечна вісь) за допомогою `align-items`.",
+                goal: "Center the blocks vertically (cross-axis) using `align-items`.",
                 starterCSS: "#game-container { display: flex; height: 100%; }",
                 solution: "align-items: center;",
                 boardHTML: createItemHTML(1) + createItemHTML(2)
             },
-            // Рівень 6: flex-direction: column
+            // Level 6: flex-direction: column
             {
                 id: 6,
-                goal: "Змініть напрямок головної осі на вертикальний за допомогою `flex-direction` із значенням `column-reverse`. Блоки 🐸 та ⭐ мають помінятися місцями.",
+                goal: "Change the direction of the main axis to vertical using `flex-direction` with the value `column-reverse`. Blocks 🐸 and ⭐ should swap places.",
                 starterCSS: "#game-container { display: flex; height: 100%; }",
                 solution: "flex-direction: column-reverse;",
                 boardHTML: createItemHTML(1) + createItemHTML(2)
             },
-            // Рівень 7: flex-direction: row-reverse + justify-content
+            // Level 7: flex-direction: row-reverse + justify-content
             {
                 id: 7,
-                goal: "Розверніть порядок блоків, використовуючи `flex-direction: row-reverse;`, і вирівняйте їх по центру за допомогою `justify-content`.",
+                goal: "Reverse the order of blocks using `flex-direction: row-reverse;`, and align them to the center using `justify-content`.",
                 starterCSS: "#game-container { display: flex; }",
                 solution: "flex-direction: row-reverse; justify-content: center;",
                 boardHTML: createItemHTML(1) + createItemHTML(2)
             },
-            // Рівень 8: justify-content + align-items (повне центрування)
+            // Level 8: justify-content + align-items (full centering)
             {
                 id: 8,
-                goal: "Використовуйте `justify-content` та `align-items` для **повного центрування** блоку 🍄 у контейнері.",
+                goal: "Use `justify-content` and `align-items` to **completely center** the 🍄 block in the container.",
                 starterCSS: "#game-container { display: flex; height: 100%; }",
                 solution: "justify-content: center; align-items: center;",
                 boardHTML: createItemHTML(5)
             },
-            // Рівень 9: align-self
+            // Level 9: align-self
             {
                 id: 9,
-                goal: "Використовуйте `align-self: flex-end;` на блоці 🐸 (`.item-1`) та `align-self: flex-start;` на блоці ⭐ (`.item-2`)",
+                goal: "Use `align-self: flex-end;` on the 🐸 block (`.item-1`) and `align-self: flex-start;` on the ⭐ block (`.item-2`)",
                 starterCSS: `#game-container { display: flex; height: 100%; align-items: center; }`,
                 solution: ".item-1 { align-self: flex-end; } .item-2 { align-self: flex-start; }",
                 boardHTML: createItemHTML(1) + createItemHTML(2) + createItemHTML(3)
             },
-            // Рівень 10: flex-wrap
+            // Level 10: flex-wrap
             {
                 id: 10,
-                goal: "Використовуйте `flex-wrap: wrap;`, щоб блоки переносилися на новий рядок (контейнер має обмежену ширину).",
+                goal: "Use `flex-wrap: wrap;` so that blocks wrap to a new line (container has limited width).",
                 starterCSS: "#game-container { display: flex; width: 300px; }",
                 solution: "flex-wrap: wrap;",
                 boardHTML: createItemHTML(1) + createItemHTML(2) + createItemHTML(3) + createItemHTML(4) + createItemHTML(5)
             },
-            // Рівень 11: Комбінуйте: row-reverse + space-between.
+            // Level 11: Combine: row-reverse + space-between.
             { 
                 id: 11, 
-                goal: "Комбінуйте: `row-reverse` + `space-between`.", 
+                goal: "Combine: `row-reverse` + `space-between`.", 
                 starterCSS: "#game-container { display: flex; }", 
                 solution: "flex-direction: row-reverse; justify-content: space-between;", 
                 boardHTML: createItemHTML(1) + createItemHTML(2) + createItemHTML(3)
             },
-            // Рівень 12: flex-flow
+            // Level 12: flex-flow
             { 
                 id: 12, 
-                goal: "Використовуйте скорочену властивість `flex-flow` для встановлення напрямку `column` та вирівнювання `center` (по головній осі).", 
+                goal: "Use the `flex-flow` shorthand property to set the direction to `column` and alignment to `center` (on the main axis).", 
                 starterCSS: "#game-container { display: flex; height: 100%; }", 
                 solution: "flex-flow: column center;", 
                 boardHTML: createItemHTML(1) + createItemHTML(2)
             },
-            // Рівень 13: order
+            // Level 13: order
             { 
                 id: 13, 
-                goal: "Перемістіть блок 🍎 (`.item-3`) на перше місце за допомогою `order`.", 
+                goal: "Move the 🍎 block (`.item-3`) to the first position using `order`.", 
                 starterCSS: "#game-container { display: flex; }", 
                 solution: ".item-3 { order: -1; }", 
                 boardHTML: createItemHTML(1) + createItemHTML(2) + createItemHTML(3)
             },
-            // Рівень 14: align-content
+            // Level 14: align-content
             { 
                 id: 14, 
-                goal: "Вирівняйте лінії за допомогою `align-content: space-around;` (контейнер загорнутий).", 
+                goal: "Align the lines using `align-content: space-around;` (container is wrapped).", 
                 starterCSS: "#game-container { display: flex; flex-wrap: wrap; height: 100%; width: 200px; }", 
                 solution: "align-content: space-around;", 
                 boardHTML: createItemHTML(1) + createItemHTML(2) + createItemHTML(3) + createItemHTML(4) + createItemHTML(5)
             },
-            // Рівень 15: flex-grow
+            // Level 15: flex-grow
             { 
                 id: 15, 
-                goal: "Використовуйте `flex-grow: 1` на блоці 🐸 (`.item-1`), щоб він зайняв весь доступний простір.", 
+                goal: "Use `flex-grow: 1` on the 🐸 block (`.item-1`) so that it occupies all available space.", 
                 starterCSS: "#game-container { display: flex; }", 
                 solution: ".item-1 { flex-grow: 1; }", 
                 boardHTML: createItemHTML(1) + createItemHTML(2)
             },
-            // Рівень 16: flex-grow + flex-shrink
+            // Level 16: flex-grow + flex-shrink
             { 
                 id: 16, 
-                goal: "Забезпечте, щоб блок 🐸 (`.item-1`) займав вдвічі більше місця, ніж блок ⭐ (`.item-2`), використовуючи `flex-grow` (2 та 1).", 
+                goal: "Ensure that the 🐸 block (`.item-1`) occupies twice as much space as the ⭐ block (`.item-2`), using `flex-grow` (2 and 1).", 
                 starterCSS: "#game-container { display: flex; }", 
                 solution: ".item-1 { flex-grow: 2; } .item-2 { flex-grow: 1; }", 
                 boardHTML: createItemHTML(1) + createItemHTML(2)
             },
-            // Рівень 17: justify-content + align-content (повне центрування з wrap)
+            // Level 17: justify-content + align-content (full centering with wrap)
             { 
                 id: 17, 
-                goal: "Використовуйте `justify-content` та `align-content` для центрування блоків по обох осях (потрібен `flex-wrap: wrap`).", 
+                goal: "Use `justify-content` and `align-content` to center the blocks on both axes (requires `flex-wrap: wrap`).", 
                 starterCSS: "#game-container { display: flex; flex-wrap: wrap; height: 100%; }", 
                 solution: "justify-content: center; align-content: center;", 
                 boardHTML: createItemHTML(1) + createItemHTML(2) + createItemHTML(3)
             },
-            // Рівень 18: order (складний)
+            // Level 18: order (complex)
             { 
                 id: 18, 
-                goal: "Використовуйте `order` для зміни позицій 🐸, ⭐, 🍎 на 🍎, 🐸, ⭐.", 
+                goal: "Use `order` to change the positions of 🐸, ⭐, 🍎 to 🍎, 🐸, ⭐.", 
                 starterCSS: "#game-container { display: flex; }", 
                 solution: ".item-1 { order: 2; } .item-2 { order: 3; } .item-3 { order: 1; }", 
                 boardHTML: createItemHTML(1) + createItemHTML(2) + createItemHTML(3)
             },
-            // Рівень 19: align-content (flex-end)
+            // Level 19: align-content (flex-end)
             { 
                 id: 19, 
-                goal: "Перенесіть блоки та вирівняйте їх у кінці (внизу) за допомогою `align-content: flex-end;`.", 
+                goal: "Wrap the blocks and align them to the end (bottom) using `align-content: flex-end;`.", 
                 starterCSS: "#game-container { display: flex; flex-wrap: wrap; height: 100%; width: 250px; }", 
                 solution: "align-content: flex-end;", 
                 boardHTML: createItemHTML(1) + createItemHTML(2) + createItemHTML(3) + createItemHTML(4)
             },
-            // Рівень 20: align-items: baseline
+            // Level 20: align-items: baseline
             { 
                 id: 20, 
-                goal: "Вирівняйте блоки по осі baseline (`align-items: baseline;`).", 
+                goal: "Align the blocks along the baseline axis (`align-items: baseline;`).", 
                 starterCSS: "#game-container { display: flex; height: 100%; }", 
                 solution: "align-items: baseline;", 
                 boardHTML: `<div class="item item-1" style="font-size: 2rem;">${ITEM_ICONS[1]}</div>` + createItemHTML(2) 
             },
-            // Рівень 21: flex-basis
+            // Level 21: flex-basis
             { 
                 id: 21, 
-                goal: "Використовуйте `flex-basis: 150px;` на блоці 🐸 (`.item-1`) для встановлення його початкового розміру.", 
+                goal: "Use `flex-basis: 150px;` on the 🐸 block (`.item-1`) to set its initial size.", 
                 starterCSS: "#game-container { display: flex; }", 
                 solution: ".item-1 { flex-basis: 150px; }", 
                 boardHTML: createItemHTML(1) + createItemHTML(2)
             },
-            // Рівень 22: stretch
+            // Level 22: stretch
             { 
                 id: 22, 
-                goal: "Зробіть блоки максимально широкими та високими за допомогою `flex-grow` та `align-items: stretch` (введіть обидві властивості).", 
+                goal: "Make the blocks as wide and tall as possible using `flex-grow` and `align-items: stretch` (enter both properties).", 
                 starterCSS: "#game-container { display: flex; height: 100%; align-items: stretch; }", 
                 solution: ".item { flex-grow: 1; }", 
                 boardHTML: createItemHTML(1) + createItemHTML(2)
             },
-            // Рівень 23: column + space-between
+            // Level 23: column + space-between
             { 
                 id: 23, 
-                goal: "Комбінуйте `flex-direction: column` та `justify-content: space-between`.", 
+                goal: "Combine `flex-direction: column` and `justify-content: space-between`.", 
                 starterCSS: "#game-container { display: flex; height: 100%; }", 
                 solution: "flex-direction: column; justify-content: space-between;", 
                 boardHTML: createItemHTML(1) + createItemHTML(2) + createItemHTML(3)
             },
-            // Рівень 24: row-reverse + align-items: center
+            // Level 24: row-reverse + align-items: center
             { 
                 id: 24, 
-                goal: "Поєднайте `row-reverse` та `align-items: center`.", 
+                goal: "Combine `row-reverse` and `align-items: center`.", 
                 starterCSS: "#game-container { display: flex; height: 100%; }", 
                 solution: "flex-direction: row-reverse; align-items: center;", 
                 boardHTML: createItemHTML(1) + createItemHTML(2)
             },
-            // Рівень 25: Фінальне завдання
+            // Level 25: Final Task
             { 
                 id: 25, 
-                goal: "Фінальне завдання! Повністю відцентруйте блоки (justify-content, align-items) та розверніть їхній порядок (row-reverse).", 
+                goal: "Final Task! Fully center the blocks (justify-content, align-items) and reverse their order (row-reverse).", 
                 starterCSS: "#game-container { display: flex; height: 100%; }", 
                 solution: "justify-content: center; align-items: center; flex-direction: row-reverse;", 
                 boardHTML: createItemHTML(1) + createItemHTML(2)
@@ -335,31 +335,31 @@
         ];
 
         /**
-         * Утиліта для застосування властивостей CSS до елемента.
-         * @param {HTMLElement} element - елемент, до якого застосовуються стилі.
-         * @param {string} propertiesString - рядок CSS-властивостей (наприклад, "color: red; font-size: 16px;").
+         * Utility to apply CSS properties to an element.
+         * @param {HTMLElement} element - the element to which styles are applied.
+         * @param {string} propertiesString - string of CSS properties (e.g., "color: red; font-size: 16px;").
          */
         function applyStyles(element, propertiesString) {
             propertiesString.split(';').forEach(prop => {
                 const [key, value] = prop.split(':');
                 if (key && value) {
-                    // Перетворюємо kebab-case на camelCase для властивостей JavaScript style
+                    // Convert kebab-case to camelCase for JavaScript style properties
                     const camelCaseKey = key.trim().replace(/-([a-z])/g, (g) => g[1].toUpperCase());
                     element.style[camelCaseKey] = value.trim();
                 }
             });
         }
         
-        // Функція для очищення та застосування CSS
+        // Function for clearing and applying CSS
         function applyUserCSS(cssCode) {
-            // 1. Очищення ВСІХ попередніх інлайн-стилів для контейнера та елементів
+            // 1. Clearing ALL previous inline styles for the container and elements
             gameContainer.removeAttribute('style');
             const items = gameContainer.querySelectorAll('.item');
             items.forEach(item => item.removeAttribute('style'));
 
             const levelData = levels[currentLevel - 1];
             
-            // 2. Застосування СТАРТОВОГО CSS (це наша база)
+            // 2. Applying STARTING CSS (this is our base)
             const starterRules = levelData.starterCSS.match(/(\.item-\d|\#game-container|\s*)\s*\{([^}]+)\}/g) || [];
             
             starterRules.forEach(rule => {
@@ -370,12 +370,12 @@
                     document.querySelectorAll(selector).forEach(item => applyStyles(item, properties));
                 }
             });
-            // Обробка чистого CSS для контейнера, якщо немає селекторів
+            // Handling clean CSS for the container if there are no selectors
             if (starterRules.length === 0 && levelData.starterCSS.trim()) {
                 applyStyles(gameContainer, levelData.starterCSS.replace(/[\#\{\}]/g, '').trim());
             }
 
-            // 3. Застосування КОДУ КОРИСТУВАЧА (для живого оновлення)
+            // 3. Applying USER CODE (for live update)
             const userRules = cssCode.match(/(\.item-\d|\s*)\s*\{([^}]+)\}/g) || [];
             let containerCode = cssCode;
 
@@ -394,48 +394,48 @@
             }
         }
 
-        // Функція для завантаження рівня
+        // Function for loading a level
         function loadLevel() {
             const levelData = levels[currentLevel - 1];
 
-            // Оновлення інтерфейсу
+            // Updating the interface
             currentLevelSpan.textContent = currentLevel;
             goalText.textContent = levelData.goal;
             
-            // Форматування для відображення стартового CSS
+            // Formatting for displaying Starting CSS
             let starterDisplay = levelData.starterCSS.trim();
             if (starterDisplay.startsWith('#game-container {') && starterDisplay.endsWith('}')) {
-                starterDisplay = starterDisplay.replace('#game-container {', '/* Для #game-board-container */\n')
+                starterDisplay = starterDisplay.replace('#game-container {', '/* For #game-board-container */\n')
                                                 .replace('}', '');
             }
             starterCssContainer.textContent = starterDisplay;
 
-            // Встановлення вмісту ігрового поля
+            // Setting the content of the game board
             gameContainer.innerHTML = levelData.boardHTML;
 
-            // Очищення поля вводу та повідомлення
+            // Clearing the input field and message
             cssInput.value = '';
             messageBox.textContent = '';
             messageBox.classList.add('hidden');
             nextBtn.classList.add('hidden');
             checkBtn.classList.remove('hidden');
 
-            // Застосування початкового CSS рівня
+            // Applying initial CSS of the level
             applyUserCSS(""); 
         }
 
-        // Функція перевірки відповіді
+        // Function for checking the answer
         function checkAnswer() {
             const levelData = levels[currentLevel - 1];
             const userAnswer = cssInput.value.trim().toLowerCase().replace(/\s+/g, ' ');
             const normalizedSolution = levelData.solution.toLowerCase().replace(/\s+/g, ' ');
 
-            // Перевірка: чи містить відповідь правильні властивості
+            // Check: does the answer contain the correct properties
             const isCorrect = normalizedSolution.split(';').every(solPart => {
                 solPart = solPart.trim();
                 if (!solPart) return true; 
 
-                // Використовуємо регулярний вираз для перевірки наявності властивості
+                // Use a regular expression to check for the property's presence
                 const regex = new RegExp(solPart.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i');
                 return regex.test(userAnswer);
             });
@@ -443,23 +443,23 @@
             applyUserCSS(cssInput.value);
 
             if (isCorrect) {
-                messageBox.textContent = "Вітаємо! Блоки переміщено правильно.";
+                messageBox.textContent = "Congratulations! Blocks moved correctly.";
                 messageBox.className = 'mt-4 p-3 rounded-lg text-center font-medium bg-green-900 text-green-300';
                 checkBtn.classList.add('hidden');
                 
                 if (currentLevel < levels.length) {
                     nextBtn.classList.remove('hidden');
                 } else {
-                    messageBox.textContent = "Вітаємо! Ви успішно пройшли всі 25 рівнів Flexbox!";
+                    messageBox.textContent = "Congratulations! You have successfully completed all 25 Flexbox levels!";
                 }
 
             } else {
-                messageBox.textContent = "Спробуйте ще раз. Переконайтеся, що ви використали правильну властивість та значення.";
+                messageBox.textContent = "Try again. Make sure you used the correct property and value.";
                 messageBox.className = 'mt-4 p-3 rounded-lg text-center font-medium bg-red-900 text-red-300';
             }
         }
 
-        // Функція переходу на наступний рівень
+        // Function to move to the next level
         function nextLevel() {
             if (currentLevel < levels.length) {
                 currentLevel++;
@@ -467,11 +467,11 @@
             }
         }
 
-        // Ініціалізація гри
+        // Game Initialization
         function initGame() {
             loadLevel();
 
-            // Автоматичне застосування CSS під час введення
+            // Automatic CSS application during input
             cssInput.addEventListener('input', () => {
                 applyUserCSS(cssInput.value);
             });
@@ -481,53 +481,53 @@
 
     </script>
 
-    <!-- 3. FOOTER (НИЖНІЙ КОЛОНТИТУЛ) - Дуже глибокий ФІОЛЕТОВИЙ фон -->
+    <!-- 3. FOOTER (BOTTOM COLON TITL) - Very deep VIOLET background -->
     <footer class="bg-violet-950 mt-12">
         <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-gray-400">
                 
-                <!-- Колонка 1: Швидкі посилання -->
+                <!-- Column 1: Quick links -->
                 <div>
-                    <!-- Змінено колір заголовка на білий -->
-                    <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-3">Навігація</h3>
+                    <!-- Changed header color to white -->
+                    <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-3">Navigation</h3>
                     <ul class="space-y-2">
-                        <li><a href="index.html" class="text-gray-400 hover:text-violet-400 transition">Головна</a></li>
-                        <li><a href="product.html" class="text-gray-400 hover:text-violet-400 transition">Продукт</a></li>
-                        <li><a href="about.html" class="text-gray-400 hover:text-violet-400 transition">Контакти</a></li>
+                        <li><a href="index.html" class="text-gray-400 hover:text-violet-400 transition">Home</a></li>
+                        <li><a href="product.html" class="text-gray-400 hover:text-violet-400 transition">Product</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-violet-400 transition">Contacts</a></li>
                     </ul>
                 </div>
 
-                <!-- Колонка 2: Компанія -->
+                <!-- Column 2: Company -->
                 <div>
-                    <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-3">Про нас</h3>
+                    <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-3">About Us</h3>
                     <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-violet-400 transition">Команда</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-violet-400 transition">Місія</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-violet-400 transition">Кар'єра</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-violet-400 transition">Team</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-violet-400 transition">Mission</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-violet-400 transition">Careers</a></li>
                     </ul>
                 </div>
 
-                <!-- Колонка 3: Правова інформація -->
+                <!-- Column 3: Legal Information -->
                 <div>
-                    <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-3">Юридична</h3>
+                    <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-3">Legal</h3>
                     <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-violet-400 transition">Політика конфіденційності</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-violet-400 transition">Умови використання</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-violet-400 transition">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-violet-400 transition">Terms of Use</a></li>
                     </ul>
                 </div>
                 
-                <!-- Колонка 4: Контактна інформація -->
+                <!-- Column 4: Contact Information -->
                 <div class="col-span-2 md:col-span-1">
-                    <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-3">Зв'язок</h3>
+                    <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-3">Contact</h3>
                     <p class="text-gray-400">Email: support@mvp-app.com</p>
-                    <p class="text-gray-400">Телефон: +38 0XX XXX XX XX</p>
+                    <p class="text-gray-400">Phone: +38 0XX XXX XX XX</p>
                 </div>
             </div>
             
-            <!-- Лінія розділення та авторські права -->
+            <!-- Separator line and copyright -->
             <div class="mt-8 pt-8 border-t border-violet-800">
                 <p class="text-center text-base text-gray-500">
-                    &copy; 2025 MVP-App. Всі права захищені.
+                    &copy; 2025 MVP-App. All rights reserved.
                 </p>
             </div>
         </div>
