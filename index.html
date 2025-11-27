@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MVP Сторінка - Головна</title>
+    <!-- Підключення Tailwind CSS через CDN (рекомендовано для швидкого MVP) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Встановлення шрифту Inter та плавних переходів для кращого UX */
+        
+    </style>
+</head>
+<body>
+
+    <!-- 1. HEADER (НАВІГАЦІЙНА ПАНЕЛЬ) - Глибокий ФІОЛЕТОВИЙ фон -->
+    <header class="bg-violet-900 shadow-xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                
+                <!-- Логотип/Назва MVP -->
+                <div class="flex-shrink-0">
+                    <a href="index.html" class="text-2xl font-bold text-white tracking-wider">
+                        <!-- Фірмовий фіолетовий акцент -->
+                        <span class="text-violet-400">MVP</span>-App
+                    </a>
+                </div>
+                
+                <!-- Навігаційні посилання (3 сторінки) -->
+                <nav class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <!-- Активний пункт: темно-фіолетовий фон -->
+                        <a href="index.html" class="nav-link text-white font-medium bg-violet-700">Головна</a>
+                        <!-- Неактивні пункти: світло-фіолетовий текст -->
+                        <a href="product.html" class="nav-link text-violet-300 hover:text-white">Продукт</a>
+                        <a href="contact.html" class="nav-link text-violet-300 hover:text-white">Контакти</a>
+                    </div>
+                </nav>
+                
+                <!-- Мобільне меню (Button Placeholder) -->
+                <div class="md:hidden">
+                    <!-- Кнопка мобільного меню в фіолетовому кольорі -->
+                    <button class="bg-violet-700 text-white p-2 rounded-md hover:bg-violet-600 transition">
+                        <!-- Іконка бургер-меню -->
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <!-- 2. ОСНОВНИЙ ВМІСТ (МІСЦЕ ДЛЯ СЕКЦІЙ HERO, FEATURES, ETC.) -->
+    <main>
+        <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8 text-center">
+            <!-- Змінено колір заголовка на білий/світлий для контрасту -->
+            <h1 class="text-4xl font-extrabold text-white sm:text-5xl md:text-6xl">
+                Ваш MVP Готовий у Темному Режимі
+            </h1>
+            <!-- Змінено колір тексту на світло-сірий -->
+            <p class="mt-4 text-xl text-gray-400 max-w-3xl mx-auto">
+                Це основний вміст сторінки "Головна" у стильному чорно-фіолетовому оформленні.
+            </p>
+            <div class="mt-10 flex justify-center">
+                <!-- CTA Кнопка у фіолетовому кольорі -->
+                <a href="#" class="inline-flex items-center justify-center px-10 py-3 border border-transparent text-base font-medium rounded-full shadow-lg text-white bg-violet-600 hover:bg-violet-700 transition duration-150 ease-in-out transform hover:scale-105">
+                    Заклик до Дії (CTA)
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- 3. FOOTER (НИЖНІЙ КОЛОНТИТУЛ) - Дуже глибокий ФІОЛЕТОВИЙ фон -->
+    <footer class="bg-violet-950 mt-12">
+        <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-gray-400">
+                
+                <!-- Колонка 1: Швидкі посилання -->
+                <div>
+                    <!-- Змінено колір заголовка на білий -->
+                    <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-3">Навігація</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-violet-400 transition">Головна</a></li>
+                        <li><a href="product.html" class="text-gray-400 hover:text-violet-400 transition">Продукт</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-violet-400 transition">Контакти</a></li>
+                    </ul>
+                </div>
+
+                <!-- Колонка 2: Компанія -->
+                <div>
+                    <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-3">Про нас</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-violet-400 transition">Команда</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-violet-400 transition">Місія</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-violet-400 transition">Кар'єра</a></li>
+                    </ul>
+                </div>
+
+                <!-- Колонка 3: Правова інформація -->
+                <div>
+                    <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-3">Юридична</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-violet-400 transition">Політика конфіденційності</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-violet-400 transition">Умови використання</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Колонка 4: Контактна інформація -->
+                <div class="col-span-2 md:col-span-1">
+                    <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-3">Зв'язок</h3>
+                    <p class="text-gray-400">Email: support@mvp-app.com</p>
+                    <p class="text-gray-400">Телефон: +38 0XX XXX XX XX</p>
+                </div>
+            </div>
+            
+            <!-- Лінія розділення та авторські права -->
+            <div class="mt-8 pt-8 border-t border-violet-800">
+                <p class="text-center text-base text-gray-500">
+                    &copy; 2025 MVP-App. Всі права захищені.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

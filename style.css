@@ -1,0 +1,21 @@
+body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            /* Зміна фону на чорний/темно-сірий */
+            background-color: #0d0d0d;
+            color: #f3f4f6; /* Світлий текст для темного фону */
+        }
+        main {
+            flex-grow: 1; /* Гарантує, що main займе весь доступний простір між header та footer */
+        }
+        .nav-link {
+            transition: all 0.2s ease-in-out;
+            padding: 8px 12px;
+            border-radius: 6px;
+        }
+        /* Змінюємо hover колір для темного фону */
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
